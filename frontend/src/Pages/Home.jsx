@@ -10,6 +10,8 @@ const Home = () => {
       </div>
       <About />
     </div>
+
+
   );
 }
 
