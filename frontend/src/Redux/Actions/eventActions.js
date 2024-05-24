@@ -19,4 +19,4 @@ export const addEvent = (event) => async (dispatch) => {
   }
 };
 
-// Add more actions for updating and deleting events
+//in future Add more actions for updating and deleting events
