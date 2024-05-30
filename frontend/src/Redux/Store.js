@@ -1,8 +1,7 @@
-// src/redux/store.js
 import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk'; // If you're using Redux Thunk for async actions
-import rootReducer from './Reducers';
+import thunk from 'redux-thunk';
+import rootReducer from './reducers/rootReducer';
 
-const store = createStore(rootReducer, applyMiddleware(thunk)); // Apply middleware if needed
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 export default store;

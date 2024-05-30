@@ -1,12 +1,11 @@
-import { combineReducers } from 'redux';
-import eventReducer from './eventReducer';
-import adminReducer from '../../Redux/Reducers/adminReducer';
-// Import other reducers if you have
+// import { combineReducers } from 'redux';
+// import eventReducer from './eventReducer'; // Import other reducers if needed
+// import adminReducer from './adminReducer';
 
-const rootReducer = combineReducers({
-  events: eventReducer,
-  admin: adminReducer
-  // Other reducers
-});
+// const rootReducer = combineReducers({
+//   events: eventReducer,
+//   admin: adminReducer, // Assuming 'admin' is the key for adminReducer
+//   // Other reducers if any
+// });
 
-export default rootReducer;
+// export default rootReducer;

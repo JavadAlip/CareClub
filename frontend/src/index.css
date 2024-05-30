@@ -3,7 +3,7 @@
 @import "tailwindcss/utilities";
 
 
-@layer base {
+@layer base {   
     section {
         @apply py-[75px]
     }
