@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
+const adminRoutes = require('./Routes/Admin');
 
 dotenv.config();
 
@@ -21,6 +22,9 @@ mongoose.connect(process.env.MONGO_URI, {
 app.get('/', (req, res) => {
   res.send('API is running...');
 });
+
+// Admin routes
+app.use('/api/admin', adminRoutes);
 
 // Listen on the port defined in .env
 const PORT = process.env.PORT || 5000;
