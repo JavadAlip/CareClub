@@ -1,12 +1,20 @@
 import React from 'react';
 
-const Home = () => {
+
+const Footer = () => {
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-      <h1 className="text-4xl font-bold mb-4">Home</h1>
-      <img src="https://via.placeholder.com/300" alt="Placeholder" className="w-[300px] h-[300px] object-cover" />
-    </div>
-  );
+    <footer className='pb-10 pt-5' >
+      <div className='container'>
+        <div className='flex justify-between flex-col flex-wrap gap-[30px]' >
+          <div>
+            <p className='text-[14px] leading-6  font-semibold text-textColor text-center'>
+              © 2023 Designed by <a href="https://github.com/JavadAlip" target="_blank" rel="noopener noreferrer">JAVAD</a> All rights reserved.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  )
 }
 
-export default Home;
+export default Footer
