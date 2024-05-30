@@ -7,7 +7,7 @@ const eventReducer = (state = [], action) => {
         return [...state, action.payload];
       // Add cases for updating and deleting events
       default:
-        return state;
+        return state;   
     }
   };
   
