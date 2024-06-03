@@ -11,7 +11,7 @@ const adminReducer = (state = initialState, action) => {
         isAuthenticated: true,
         error: null,
       };
-    case 'ADMIN_LOGIN_FAIL':
+    case 'ADMIN_LOGIN_FAILURE':
       return {
         ...state,
         isAuthenticated: false,
