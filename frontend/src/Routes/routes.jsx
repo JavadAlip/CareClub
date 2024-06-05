@@ -7,14 +7,14 @@ import Event from '../Pages/EventPage';
 
 // Admin
 import AdminLogin from '../Pages/adminLoginPage';
-import AdminDashboard from '../Components/Admin/AdminDashboard';
+import AdminDashboard from '../Pages/adminDashBoard';
 import EventList from '../Components/Admin/AdminEventForm';
 
 const Routers = () => {
   return (
     <Routes>
       <Route path='/' element={<Home />} />
-      <Route path='/event' element={<Event />} />
+      <Route path='/events' element={<Event />} />
       <Route path="/admin/login" element={<AdminLogin />} />
       <Route path="/admin/dashboard" element={<AdminDashboard />} />
       <Route path="/admin/eventlist" element={<EventList />} />

@@ -1,9 +1,8 @@
-// controllers/adminController.js
 const jwt = require('jsonwebtoken');
-const AdminCollection = require('../models/AdminSchema'); 
+const AdminCollection = require('../models/AdminSchema');
 require('dotenv').config();
 
-const adminsignin = async (req, res) => {
+const adminSignin = async (req, res) => {
   try {
     const { username, password } = req.body;
     const admin = await AdminCollection.findOne({ username });
@@ -15,14 +14,12 @@ const adminsignin = async (req, res) => {
           process.env.JWT_SECRET,
           { expiresIn: '3d' }
         );
-        return res.json({ admin, token, created: true });
+        return res.status(200).json({ admin, token, created: true });
       } else {
-        const errors = { password: 'Please enter the correct password' };
-        return res.json({ errors, admin: false });
+        return res.status(401).json({ errors: { password: 'Please enter the correct password' } });
       }
     } else {
-      const errors = { username: 'Please enter the correct username' };
-      return res.json({ errors, admin: false });
+      return res.status(401).json({ errors: { username: 'Please enter the correct username' } });
     }
   } catch (error) {
     console.error('Error occurred:', error);
@@ -30,4 +27,4 @@ const adminsignin = async (req, res) => {
   }
 };
 
-module.exports = { adminsignin };
+module.exports = { adminSignin };

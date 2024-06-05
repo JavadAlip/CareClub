@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import { Link } from 'react-scroll';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -12,12 +12,12 @@ const Navbar = () => {
       <div className="hidden md:flex items-center justify-center flex-grow">
         <ul className="flex space-x-4">
           <li>
-            <Link to="home" smooth={true} duration={500}>
+            <Link to="/" smooth={true} duration={500}>
               Home
             </Link>
           </li>
           <li>
-            <Link to="skills" smooth={true} duration={500}>
+            <Link to="/events" smooth={true} duration={500}>
               Events
             </Link>
           </li>
@@ -41,12 +41,12 @@ const Navbar = () => {
       </div>
       <ul className={`${!nav ? 'hidden' : 'absolute top-[80px] left-0 w-full h-screen bg-[#038112] flex flex-col items-center justify-center text-white'}`}>
         <li className="py-6 text-4xl">
-          <Link onClick={handleClick} to="home" smooth={true} duration={500}>
+          <Link onClick={handleClick} to="/" smooth={true} duration={500}>
             Home
           </Link>
         </li>
         <li className="py-6 text-4xl">
-          <Link onClick={handleClick} to="skills" smooth={true} duration={500}>
+          <Link onClick={handleClick} to="/events" smooth={true} duration={500}>
             Events
           </Link>
         </li>
