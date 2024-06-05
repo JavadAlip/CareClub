@@ -2,7 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const adminRoutes = require('./Routes/Admin');
+const adminRoutes = require('./Routes/Admin'); // Ensure this path is correct
+const eventRoutes = require('./Routes/User'); // Ensure this path is correct
 
 dotenv.config();
 
@@ -25,6 +26,9 @@ app.get('/', (req, res) => {
 
 // Admin routes
 app.use('/api/admin', adminRoutes);
+
+// Event routes
+app.use('/api/event', eventRoutes);
 
 // Listen on the port defined in .env
 const PORT = process.env.PORT || 5000;
