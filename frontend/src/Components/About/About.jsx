@@ -17,9 +17,9 @@ const About = () => {
                 <div>
                     <div className='lg:w-[570px] '>
                         <h2 className='heading'>
-                            Excellence unveiled: leading in healthcare</h2>
-                        <p className='text_para '>We take pride in our national recognition as one of the finest. Dive into our remarkable achievements and unwavering commitment to excellence. Discover the inspiring story behind our relentless pursuit of becoming the leaders in our field. Learn more about our journey towards unparalleled success.</p>
-
+                            Who are we?</h2>
+                        <p className='text_para '>We are a passionate team dedicated to making a difference in the world. Committed to serving communities in need, we leverage expertise in education, healthcare, and sustainable development to drive positive change. Together with our supporters, we work tirelessly to create a brighter, more equitable future for all.</p>
+                        <button className='btn'> <Link to='/about'> Discover More</Link></button>
                     </div>
                 </div>
 
