@@ -37,7 +37,7 @@ const AboutMore = () => {
             {/* Hero Content */}
             <div>
               <div className='lg:w-[570px]'>
-                <h2 className='heading'>Our Mission</h2>
+                <h2 className='heading'>Our mission</h2>
                 <p className='text_para'>
                 Our mission is to foster positive change by empowering underserved communities through education, healthcare, and sustainable development initiatives. Through collaborative partnerships and innovative solutions, we strive to create lasting impact and improve the lives of individuals worldwide, ensuring equitable access to opportunities for all.
                 </p>
