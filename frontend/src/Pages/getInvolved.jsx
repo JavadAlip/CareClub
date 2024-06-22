@@ -18,24 +18,34 @@ const Contact = () => {
     e.preventDefault();
     const { fullName, email, address, subject } = formData;
 
-    if (!fullName || !email || !address || !subject) {
+    if (!fullName.trim() || !email.trim() || !address.trim() || !subject.trim()) {
       setErrorMessage('Please fill the form!');
       return;
     }
-
+    if (fullName.length < 5) {
+      setErrorMessage('Full Name Must be at least 5 characters.');
+      return;
+    }
     if (fullName.length > 25) {
       setErrorMessage('Full Name must be less than 25 characters');
+      return;
+    }
+
+    if (address.length < 10) {
+      setErrorMessage(' Address must be at least 10 characters.');
       return;
     }
 
     if (address.length > 60) {
       setErrorMessage('Address must be less than 60 characters');
       return;
-    }  
-
-
-    if (subject.length > 80) {
-      setErrorMessage('Message must be less than 80 characters');
+    }
+    if (subject.length < 10) {
+      setErrorMessage('About yourself Must be at least 10 characters.');
+      return;
+    }
+    if (subject.length > 10) {
+      setErrorMessage('Subject must be less than 10 characters');
       return;
     }
 
@@ -56,7 +66,7 @@ const Contact = () => {
     <section className='pt-[160px]'>
       <div className='container'>
         <div className='px-4 mx-auto max-w-screen-md '>
-          <h2 className='heading text-center'>Thank you for your interest in becoming a volunteer!</h2>
+          <h2 className='heading text-center'>Thank you for your interest in volunteering!</h2>
           <form className='space-y-8 mt-1 hero__section' onSubmit={handleSubmit}>
             <div>
               <label htmlFor='fullName' className='form__label'>
@@ -100,7 +110,7 @@ const Contact = () => {
             </div>
             <div className='sm:col-span-2'>
               <label htmlFor='subject' className='form__label'>
-                Message
+                About yourself
               </label>
               <input
                 type='text'

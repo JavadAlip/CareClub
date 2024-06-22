@@ -46,7 +46,7 @@ const Volunteer = () => {
             <th style={{ border: '1px solid #ddd', padding: '8px', color: 'black', backgroundColor: '#7fad80' }}>Full Name</th>
             <th style={{ border: '1px solid #ddd', padding: '8px', color: 'black', backgroundColor: '#7fad80' }}>Email</th>
             <th style={{ border: '1px solid #ddd', padding: '8px', color: 'black', backgroundColor: '#7fad80' }}>Address</th>
-            <th style={{ border: '1px solid #ddd', padding: '8px', color: 'black', backgroundColor: '#7fad80' }}>Subject</th>
+            <th style={{ border: '1px solid #ddd', padding: '8px', color: 'black', backgroundColor: '#7fad80' }}>About yourself</th>
           </tr>
         </thead>
         <tbody>
@@ -57,7 +57,6 @@ const Volunteer = () => {
               <td style={{ border: '1px solid #ddd', padding: '8px', fontSize: '14px' }}>{data.address.substring(0, 80)}</td>
               <td style={{ border: '1px solid #ddd', padding: '8px', fontSize: '14px'  }}>{data.subject.substring(0, 80)}</td>
               <td style={{ border: '1px solid #ddd', padding: '8px', }}>
-                {/* Additional actions if needed */}
               </td>
             </tr>
           ))}

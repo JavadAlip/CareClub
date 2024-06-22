@@ -1,54 +1,25 @@
-// const express = require('express');
-// const mongoose = require('mongoose');
 // const dotenv = require('dotenv');
-// const cors = require('cors');
-// const adminRoutes = require('./Routes/Admin');
-// const eventRoutes = require('./Routes/User'); 
-// const volunteerRoutes=require('./Routes/Volunteer')
-
 // dotenv.config();
 
-// const app = express();
+// console.log('Stripe Secret Key:', process.env.STRIPE_SECRET_KEY);  
 
-// app.use(express.json());
-// app.use(cors());
-
-// mongoose.connect(process.env.MONGO_URI, {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// }).then(() => console.log('MongoDB connected'))
-//   .catch(err => console.log(err));
-
-// app.get('/', (req, res) => {
-//   res.send('API is running...');
-// });
-
-// app.use('/api/admin', adminRoutes);
-// app.use('/api/event', eventRoutes); 
-// app.use('/api', volunteerRoutes);
-
-// const PORT = process.env.PORT || 5000;
-// app.listen(PORT, () => {
-//   console.log(`Server running on port ${PORT}`);
-// });
-// index.js
 // const express = require('express');
 // const mongoose = require('mongoose');
-// const dotenv = require('dotenv');
 // const cors = require('cors');
+// const path = require('path');
+// const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 // const nodemailer = require('nodemailer');
 
 // const adminRoutes = require('./Routes/Admin');
 // const eventRoutes = require('./Routes/User'); 
 // const volunteerRoutes = require('./Routes/Volunteer');
-// const donationRoutes = require('./Routes/Donation'); // Correct import
-
-// dotenv.config();
+// const donationRoutes = require('./Routes/Donation');
+// const Donation = require('./Models/DonationSchema'); 
 
 // const app = express();
-
 // app.use(express.json());
 // app.use(cors());
+// app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // // MongoDB connection
 // mongoose.connect(process.env.MONGO_URI, {
@@ -95,26 +66,51 @@
 //   }
 // });
 
+// // Route to create payment intent
+// app.post('/api/create-payment-intent', async (req, res) => {
+//   const { amount } = req.body;
+//   try {
+//     const paymentIntent = await stripe.paymentIntents.create({
+//       amount: amount * 100, // Amount in cents
+//       currency: 'usd',
+//     });
+//     res.json({ clientSecret: paymentIntent.client_secret });
+//   } catch (error) {
+//     console.error('Error creating payment intent:', error);
+//     res.status(500).json({ error: 'Failed to create payment intent' });
+//   }
+// });
+
+
+// // Route to save donation details after payment
+// app.post('/api/donations', async (req, res) => {
+//   const { Name, PhoneNumber, Place, Amount } = req.body;
+//   try {
+//     const newDonation = new Donation({
+//       Name,
+//       PhoneNumber,
+//       Place,
+//       Amount
+//     });
+//     await newDonation.save();
+//     res.status(201).json(newDonation);
+//   } catch (error) {
+//     console.error('Error saving donation details:', error);
+//     res.status(500).json({ error: 'Failed to save donation details' });
+//   }
+// });
+
 // // Routes
 // app.use('/api/admin', adminRoutes);
 // app.use('/api/event', eventRoutes); 
 // app.use('/api', volunteerRoutes);
-// app.use('/api', donationRoutes); // Ensure this is properly used
+// app.use('/api', donationRoutes);
 
-// // Server
 // const PORT = process.env.PORT || 5000;
 // app.listen(PORT, () => {
 //   console.log(`Server running on port ${PORT}`);
 // });
 
-
-
-
-
-const dotenv = require('dotenv');
-dotenv.config();
-
-console.log('Stripe Secret Key:', process.env.STRIPE_SECRET_KEY);  // Log the Stripe key
 
 const express = require('express');
 const mongoose = require('mongoose');
@@ -129,7 +125,6 @@ const donationRoutes = require('./Routes/Donation');
 const Donation = require('./Models/DonationSchema'); 
 
 const app = express();
-
 app.use(express.json());
 app.use(cors());
 
@@ -138,7 +133,7 @@ mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 }).then(() => console.log('MongoDB connected'))
-  .catch(err => console.log(err));
+  .catch(err => console.log('MongoDB connection error:', err));
 
 // Nodemailer transporter
 const transporter = nodemailer.createTransport({
@@ -181,13 +176,11 @@ app.post('/api/send-email', async (req, res) => {
 // Route to create payment intent
 app.post('/api/create-payment-intent', async (req, res) => {
   const { amount } = req.body;
-
   try {
     const paymentIntent = await stripe.paymentIntents.create({
       amount: amount * 100, // Amount in cents
       currency: 'usd',
     });
-
     res.json({ clientSecret: paymentIntent.client_secret });
   } catch (error) {
     console.error('Error creating payment intent:', error);
@@ -195,11 +188,9 @@ app.post('/api/create-payment-intent', async (req, res) => {
   }
 });
 
-
 // Route to save donation details after payment
 app.post('/api/donations', async (req, res) => {
   const { Name, PhoneNumber, Place, Amount } = req.body;
-
   try {
     const newDonation = new Donation({
       Name,
@@ -207,7 +198,6 @@ app.post('/api/donations', async (req, res) => {
       Place,
       Amount
     });
-
     await newDonation.save();
     res.status(201).json(newDonation);
   } catch (error) {
@@ -221,7 +211,6 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/event', eventRoutes); 
 app.use('/api', volunteerRoutes);
 app.use('/api', donationRoutes);
-// app.use('/api/donations', donationRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
