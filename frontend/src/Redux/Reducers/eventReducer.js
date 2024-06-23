@@ -8,7 +8,7 @@ import {
   DELETE_EVENT_REQUEST,
   DELETE_EVENT_SUCCESS,
   DELETE_EVENT_FAILURE,
-} from './../Actions/eventActions'; // Adjust the path as per your file structure
+} from './../Actions/eventActions'; 
 
 const initialState = {
   events: [],
@@ -57,3 +57,4 @@ const eventReducer = (state = initialState, action) => {
 };
 
 export default eventReducer;
+
