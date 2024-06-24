@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const DonationSchema = new mongoose.Schema({
   Name: {
     type: String,

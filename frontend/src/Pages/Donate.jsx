@@ -33,32 +33,26 @@ const Donate = () => {
       setErrorMessage('Name must be at least 3 characters.');
       return;
     }
-
     if (Name.length > 25) {
       setErrorMessage('Full Name must be less than 25 characters.');
       return;
     }
-
     if (PhoneNumber.length !== 10 || isNaN(PhoneNumber)) {
       setErrorMessage('Phone Number must be exactly 10 numeric characters.');
       return;
     }
-
     if (Place.length < 3) {
       setErrorMessage('Place must be at least 3 characters.');
       return;
     }
-
     if (Place.length > 25) {
       setErrorMessage('Place must be less than 25 characters.');
       return;
     }
-
     if (isNaN(Amount)) {
       setErrorMessage('Amount must be in numeric format.'); 
       return;
     }
-
     try {
       await axios.post('http://localhost:5000/api/donations', formData);
       setFormData({ Name: '', PhoneNumber: '', Place: '', Amount: '' });

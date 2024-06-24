@@ -1,87 +1,3 @@
-// import React, { useState } from 'react';
-// import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-// import axios from 'axios';
-
-// const PaymentForm = ({ amount }) => {
-//   const stripe = useStripe();
-//   const elements = useElements();
-
-//   const [paymentStatus, setPaymentStatus] = useState(null);
-
-//   const handleSubmit = async (event) => {
-//     event.preventDefault();
-
-//     if (!stripe || !elements) {
-//       return;
-//     }
-
-//     const cardElement = elements.getElement(CardElement);
-//     if (!cardElement) {
-//       alert('Failed to find card element.');
-//       return;
-//     }
-
-//     try {
-//       const { data } = await axios.post('http://localhost:5000/api/create-payment-intent', {
-//         amount,
-//       });
-
-//       const { clientSecret } = data;
-
-//       const { error: methodError, paymentMethod } = await stripe.createPaymentMethod({
-//         type: 'card',
-//         card: cardElement,
-//       });
-
-//       if (methodError) {
-//         console.error(methodError);
-//         alert('Failed to create payment method. Please try again later.');
-//         return;
-//       }
-
-//       const { error: confirmError, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
-//         payment_method: paymentMethod.id,
-//       });
-
-//       if (confirmError) {
-//         console.error(confirmError);
-//         alert('Payment failed. Please try again later.');
-//       } else {
-//         if (paymentIntent.status === 'succeeded') {
-//           setPaymentStatus('succeeded');
-//           setTimeout(() => {
-//             window.location.href = '/success'; // Programmatic redirect to success page
-//           }, 2000); // Redirect after 2 seconds
-//         }
-//       }
-//     } catch (error) {
-//       console.error('Error creating payment intent or confirming payment:', error);
-//       alert('Failed to create payment intent or confirm payment. Please try again later.');
-//     }
-//   };
-
-//   if (paymentStatus === 'succeeded') {
-//     return (
-//       <div className="text-center pt-[180px]">
-//         <h2>Payment Successful!</h2>
-//         <p>Thank you for your Donation.</p>
-//       </div>
-//     );
-//   }
-
-//   return (
-//     <form onSubmit={handleSubmit}>
-//       <CardElement />
-//       <button type="submit" className="btn rounded mt-4" disabled={!stripe}>
-//         Pay
-//       </button>
-//     </form>
-//   );
-// };
-
-// export default PaymentForm;
-
-
 import React, { useState } from 'react';
 import { useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement } from '@stripe/react-stripe-js';
 import axios from 'axios';
@@ -89,30 +5,25 @@ import axios from 'axios';
 const PaymentForm = ({ amount }) => {
   const stripe = useStripe();
   const elements = useElements();
-
   const [paymentStatus, setPaymentStatus] = useState(null);
   const [postalCode, setPostalCode] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     if (!stripe || !elements) {
       return;
     }
-
     try {
       const { data } = await axios.post('http://localhost:5000/api/create-payment-intent', {
         amount,
-        postal_code: postalCode, // Include postal code in the request
+        postal_code: postalCode, 
       });
 
       const { clientSecret } = data;
-
       const paymentMethodReq = await stripe.createPaymentMethod({
         type: 'card',
         card: elements.getElement(CardNumberElement),
         billing_details: {
-          // Include additional details here as needed
         },
       });
 
@@ -121,15 +32,14 @@ const PaymentForm = ({ amount }) => {
         alert('Failed to create payment method. Please try again later.');
         return;
       }
-
       const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
           card: elements.getElement(CardNumberElement),
           billing_details: {
-            name: 'Test User', // Replace with actual user's details
-            email: 'test@example.com', // Replace with actual user's email
+            name: 'Test User', 
+            email: 'test@example.com', 
             address: {
-              postal_code: postalCode, // Include postal code in the payment method
+              postal_code: postalCode, 
             },
           },
         },
@@ -151,8 +61,6 @@ const PaymentForm = ({ amount }) => {
       alert('Failed to process payment. Please try again later.');
     }
   };
-
-  
 
   return (
     <form onSubmit={handleSubmit}>
@@ -224,10 +132,11 @@ const PaymentForm = ({ amount }) => {
           onChange={(e) => setPostalCode(e.target.value)}
           required
           className="input-field"
+          style={{  borderRadius: '4px', border: '1px solid #ccc' }}
         />
       </div>
       <button type="submit" className="btn rounded mt-4" disabled={!stripe}>
-        Pay
+        Donate
       </button>
     </form>
   );
