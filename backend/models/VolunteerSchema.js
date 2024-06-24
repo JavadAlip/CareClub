@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const VolunteerSchema = new mongoose.Schema({
     fullName: {
     type: String,

@@ -19,16 +19,10 @@ const Volunteer = () => {
     fetchVolunteers();
   }, []);
 
-  // Calculate index of last volunteer on current page
+
   const indexOfLastVolunteer = currentPage * volunteersPerPage;
-
-  // Calculate index of first volunteer on current page
   const indexOfFirstVolunteer = indexOfLastVolunteer - volunteersPerPage;
-
-  // Get volunteers to display on current page
   const currentVolunteers = volunteers.slice(indexOfFirstVolunteer, indexOfLastVolunteer);
-
-  // Function to handle page changes
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   // Render pagination buttons

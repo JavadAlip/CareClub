@@ -30,12 +30,10 @@ const Contact = () => {
       setErrorMessage('Full Name must be less than 25 characters');
       return;
     }
-
     if (address.length < 10) {
       setErrorMessage(' Address must be at least 10 characters.');
       return;
     }
-
     if (address.length > 60) {
       setErrorMessage('Address must be less than 60 characters');
       return;
@@ -44,12 +42,6 @@ const Contact = () => {
       setErrorMessage('About yourself Must be at least 10 characters.');
       return;
     }
-    if (subject.length > 10) {
-      setErrorMessage('Subject must be less than 10 characters');
-      return;
-    }
-
-
     try {
       await axios.post('http://localhost:5000/api/send-email', formData);
       await axios.post('http://localhost:5000/api/volunteers', formData);

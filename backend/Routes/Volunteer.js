@@ -1,7 +1,5 @@
-
 const express = require('express');
 const { addVolunteer, getVolunteer } = require('../Controllers/VolunteerController');
-
 const router = express.Router();
 
 router.post('/volunteers', addVolunteer);

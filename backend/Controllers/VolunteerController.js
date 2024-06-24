@@ -20,6 +20,4 @@ const getVolunteer = async (req, res) => {
     }
   };
 
- 
-
   module.exports = { getVolunteer,addVolunteer}
