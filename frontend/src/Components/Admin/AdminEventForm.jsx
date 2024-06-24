@@ -1,4 +1,3 @@
-// components/AdminEventForm.js
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addEvent } from '../../Redux/Actions/eventActions';

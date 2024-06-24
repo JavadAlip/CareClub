@@ -6,7 +6,6 @@ const adminSignin = async (req, res) => {
   try {
     const { username, password } = req.body;
     const admin = await AdminCollection.findOne({ username });
-
     if (admin) {
       if (admin.password === password) {
         const token = jwt.sign(
