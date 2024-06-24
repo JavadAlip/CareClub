@@ -2,7 +2,6 @@ import React from 'react';
 import AboutImg from '../../assets/donate.jpg';
 import { Link } from 'react-router-dom';
 
-
 const About = () => {
     return <section className=' pt-[60px] 2xl:h-[800px]'>
         <div className='container'>

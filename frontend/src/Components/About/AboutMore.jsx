@@ -2,12 +2,13 @@ import React from 'react';
 import AboutImg from './../../assets/CharityMission.jpg';
 import { FaWater, FaHeartbeat, FaBook } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import Donate from '../../Pages/Donate';
 
 const AboutMore = () => {
   const sections = [
     {
       title: 'Pure Food & Water',
-      description: 'Ensuring access to clean water and nutritious food for impoverished communities, our charity promotes health and well-being. We focus on sustainable practices to create lasting solutions, empowering families and fostering resilience for a future free from hunger and thirst.',
+      description: 'Ensuring access to clean water and nutritious food for impoverished communities. We focus on sustainable practices to create lasting solutions, empowering resilience for a future free from hunger and thirst.',
       icon: <FaWater size={50} />, 
     },
     {
@@ -57,6 +58,7 @@ const AboutMore = () => {
               </div>
             ))}
           </div>
+          <Donate/>
         </div>
       </div>
     </section>
