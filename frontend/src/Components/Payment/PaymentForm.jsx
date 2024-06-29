@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement } from '@stripe/react-stripe-js';
 import axios from 'axios';
+import { baseURL } from '../../../config';
+
 
 const PaymentForm = ({ amount }) => {
   const stripe = useStripe();
@@ -14,7 +16,7 @@ const PaymentForm = ({ amount }) => {
       return;
     }
     try {
-      const { data } = await axios.post(`${baseUrl}/api/create-payment-intent`, {
+      const { data } = await axios.post(`${baseURL}/api/create-payment-intent`, {
         amount,
         postal_code: postalCode, 
       });

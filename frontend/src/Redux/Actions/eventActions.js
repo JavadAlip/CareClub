@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { baseURL } from '../../../config';
 
 export const ADD_EVENT_REQUEST = 'ADD_EVENT_REQUEST';
 export const ADD_EVENT_SUCCESS = 'ADD_EVENT_SUCCESS';
@@ -26,7 +27,7 @@ export const addEvent = (eventData) => async (dispatch) => {
     });
 
     const imageUrl = cloudinaryResponse.data.secure_url;
-    const response = await axios.post(`${baseUrl}/api/event/events`, {
+    const response = await axios.post(`${baseURL}/api/event/events`, {
       ...eventData,
       imageUrl, 
     });
@@ -40,7 +41,7 @@ export const addEvent = (eventData) => async (dispatch) => {
 export const fetchEvents = () => async (dispatch) => {
   dispatch({ type: FETCH_EVENTS_REQUEST });
   try {
-    const response = await axios.get(`${baseUrl}/api/event/events`);
+    const response = await axios.get(`${baseURL}/api/event/events`);
     dispatch({ type: FETCH_EVENTS_SUCCESS, payload: response.data });
   } catch (error) {
     dispatch({ type: FETCH_EVENTS_FAILURE, error: error.message });
@@ -51,7 +52,7 @@ export const fetchEvents = () => async (dispatch) => {
 export const deleteEvent = (eventId) => async (dispatch) => {
   dispatch({ type: DELETE_EVENT_REQUEST });
   try {
-    await axios.delete(`${baseUrl}/api/event/events/${eventId}`);
+    await axios.delete(`${baseURL}/api/event/events/${eventId}`);
     dispatch({ type: DELETE_EVENT_SUCCESS, payload: eventId });
   } catch (error) {
     dispatch({ type: DELETE_EVENT_FAILURE, error: error.message });

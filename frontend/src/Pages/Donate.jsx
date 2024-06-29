@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import AboutImg from '../../src/assets/donate1.jpg';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { baseURL } from '../../config';
 
 const Donate = () => {
   const [formData, setFormData] = useState({
@@ -54,7 +55,7 @@ const Donate = () => {
       return;
     }
     try {
-      await axios.post(`${baseUrl}/api/donations`, formData);
+      await axios.post(`${baseURL}/api/donations`, formData);
       setFormData({ Name: '', PhoneNumber: '', Place: '', Amount: '' });
       setErrorMessage('');
       navigate('/donation-details', { state: { formData } });

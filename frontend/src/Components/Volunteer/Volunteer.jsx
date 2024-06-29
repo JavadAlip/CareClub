@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { baseURL } from '../../../config';
 
 const Volunteer = () => {
   const [volunteers, setVolunteers] = useState([]);
@@ -9,7 +10,7 @@ const Volunteer = () => {
   useEffect(() => {
     const fetchVolunteers = async () => {
       try {
-        const response = await axios.get(`${baseUrl}/api/volunteers`);
+        const response = await axios.get(`${baseURL}/api/volunteers`);
         setVolunteers(response.data);
       } catch (error) {
         console.error('Error fetching volunteers', error);

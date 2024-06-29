@@ -5,6 +5,7 @@ import { fetchEvents } from './../Redux/Actions/eventActions';
 import AdminEventList from '../Components/Events/adminEventList';
 import Volunteer from '../Components/Volunteer/Volunteer';
 import Donor from '../Components/Donors/Donors';
+import { baseURL } from '../../config';
 
 const AdminDashboard = () => {
   const [activeSection, setActiveSection] = useState('events');
@@ -27,7 +28,7 @@ const AdminDashboard = () => {
   // volunteers fetch direct without using redux
   const fetchVolunteers = async () => {
     try {
-      const response = await axios.get(`${baseUrl}/api/volunteers`);
+      const response = await axios.get(`${baseURL}/api/volunteers`);
       setVolunteers(response.data);
     } catch (error) {
       console.error('Error fetching volunteers', error);
@@ -37,7 +38,7 @@ const AdminDashboard = () => {
   // donors fetch direct without using redux
   const fetchDonors = async () => {
     try {
-      const response = await axios.get(`${baseUrl}/api/donations`);
+      const response = await axios.get(`${baseURL}/api/donations`);
       setDonors(response.data);
     } catch (error) {
       console.error('Error fetching donors', error);

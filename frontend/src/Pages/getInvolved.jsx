@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { baseURL } from '../../config';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -43,8 +44,8 @@ const Contact = () => {
       return;
     }
     try {
-      await axios.post(`${baseUrl}/api/send-email`, formData);
-      await axios.post(`${baseUrl}/api/volunteers`, formData);
+      await axios.post(`${baseURL}/api/send-email`, formData);
+      await axios.post(`${baseURL}/api/volunteers`, formData);
       setFormData({ fullName: '', address: '', email: '', subject: '' });
       setErrorMessage('');
       alert('Form submitted successfully!');
