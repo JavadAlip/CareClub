@@ -1,4 +1,4 @@
-const Donation = require('../Models/DonationSchema');
+const Donation = require('../models/DonationSchema');
 
 const addDonation = async (req, res) => {
   const { Name, PhoneNumber, Place, Amount } = req.body;
