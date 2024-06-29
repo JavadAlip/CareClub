@@ -1,4 +1,4 @@
-const Volunteer = require('../Models/VolunteerSchema');
+const Volunteer = require('../models/VolunteerSchema');
 
 const addVolunteer= async (req,res)=>{
     const { fullName, email, address, subject } = req.body;
