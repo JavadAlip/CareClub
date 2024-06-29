@@ -1,4 +1,4 @@
-const Event = require('../Models/EventSchema');
+const Event = require('../models/EventSchema');
 
 const addEvent = async (req, res) => {
   const { title, description, date, imageUrl, place } = req.body; 
