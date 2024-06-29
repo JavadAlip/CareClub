@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { baseURL } from '../../../config';
 
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/doue07abb/image/upload';
 const CLOUDINARY_UPLOAD_PRESET = 'CareClub'; 
