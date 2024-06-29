@@ -9,7 +9,7 @@ const Volunteer = () => {
   useEffect(() => {
     const fetchVolunteers = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/volunteers');
+        const response = await axios.get(`${baseUrl}/api/volunteers`);
         setVolunteers(response.data);
       } catch (error) {
         console.error('Error fetching volunteers', error);

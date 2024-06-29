@@ -54,7 +54,7 @@ const Donate = () => {
       return;
     }
     try {
-      await axios.post('http://localhost:5000/api/donations', formData);
+      await axios.post(`${baseUrl}/api/donations`, formData);
       setFormData({ Name: '', PhoneNumber: '', Place: '', Amount: '' });
       setErrorMessage('');
       navigate('/donation-details', { state: { formData } });

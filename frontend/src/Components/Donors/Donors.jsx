@@ -9,7 +9,7 @@ const Donor = () => {
   useEffect(() => {
     const fetchDonors = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/donations');
+        const response = await axios.get(`${baseURL}/api/donations`);
         setDonors(response.data);
       } catch (error) {
         console.error('Error fetching donors', error);

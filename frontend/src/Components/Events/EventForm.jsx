@@ -46,7 +46,7 @@ const EventForm = ({ setShowEventForm }) => {
       });
 
       const imageUrl = cloudinaryResponse.data.secure_url;
-      await axios.post('http://localhost:5000/api/event/events', {
+      await axios.post(`${baseURL}/api/event/events`, {
         title,
         description,
         place,

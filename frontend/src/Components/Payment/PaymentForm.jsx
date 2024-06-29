@@ -14,7 +14,7 @@ const PaymentForm = ({ amount }) => {
       return;
     }
     try {
-      const { data } = await axios.post('http://localhost:5000/api/create-payment-intent', {
+      const { data } = await axios.post(`${baseUrl}/api/create-payment-intent`, {
         amount,
         postal_code: postalCode, 
       });

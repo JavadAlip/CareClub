@@ -43,8 +43,8 @@ const Contact = () => {
       return;
     }
     try {
-      await axios.post('http://localhost:5000/api/send-email', formData);
-      await axios.post('http://localhost:5000/api/volunteers', formData);
+      await axios.post(`${baseUrl}/api/send-email`, formData);
+      await axios.post(`${baseUrl}/api/volunteers`, formData);
       setFormData({ fullName: '', address: '', email: '', subject: '' });
       setErrorMessage('');
       alert('Form submitted successfully!');
